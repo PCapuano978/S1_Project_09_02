@@ -14,14 +14,23 @@
 
 /* Validation Styles */
 
+/* Every input that is not the type of "radio" and is in focus by being selected has their background color changed to
+a contrasting shade of orange prescribed by the RGB value. */
+
 input:not([type='radio']):focus {
     background-color: rgb(255, 218, 216);
 }
+
+/* Any input that is not of the "radio" type is in focus, and is verified to be correct will have a green background
+instead and a green checkmark image that does not repeat added to the right of the data field. */
 
 input:not([type='radio']):focus:valid {
     background: rgb(215, 255, 215) url("sb_valid.png") right no-repeat;
 }
 
-input:not([type='radio']):focus:valid {
+/* All inputs that do not have the "radio" type and furthmore are not valid within the focus while have a red background
+while displaing a red "X" symbol that does not tile on the right edge of the field area.*/
+
+input:not([type='radio']):focus:invalid {
     background: rgb(255, 245, 215) url("sb_invalid.png") right no-repeat;
 }

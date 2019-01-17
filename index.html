@@ -15,6 +15,8 @@
 
    -->
 
+    <!-- Stylesheets are linked as per usual, including the Javascript sheet the must include both and opening and closing tag. -->
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Spice Bowl Payment Form</title>
@@ -51,11 +53,19 @@
     <section>
         <h1>Payment Form</h1>
 
+        <!-- Our first form starts here with the payment information as stated by the heading.
+        The whole form's server acts as the URL below, is given an ID of "payment" and lastly has it's use method to post. -->
+
         <form action="http://www.example.com/sb/payment" id="payment" method="POST">
 
             <fieldset id="billing">
 
                 <legend>Billing Information (required)</legend>
+
+                <!-- All fields act upon the same template, starting first with a label that instables the name both
+                data wise and user wise, before starting the input that always starts with the same data name with an
+                ID given to target it in the CSS and a type that determines how the field shall be treated. An attribute
+                of "required" is also added on to make sure the user fills in the field before submitting. -->
 
                 <label for="fName">First Name</label>
                 <input name="fName" id="firstBox" type="text" required>
@@ -72,18 +82,33 @@
                 <label for="city">City</label>
                 <input name="city" id="citybox" type="text" required>
 
+                <!-- The state field starts out with our first list by targetting the item list furhter down the page
+                by use of both an ID and a attribute to target it.-->
+
                 <label for="state">State</label>
                 <input name="state" id="statebox" type="text" list="stateList" required>
+
+                <!-- The ZIP Code also introduces the pattern which checks more throughly if the user's data inserted
+                is valid by a complicated formula to form a template the text must follow to be accepted. -->
 
                 <label for="zip">Zip/Postal Code</label>
                 <input name="zip" id="zipBox" type="text" pattern="^\d{5}(-\d{4})?$ ">
 
+                <!-- The Country field fills in the blank automattically with the text "United State" as the user
+                is likely already in residence if they are to take this survey. -->
+
                 <label for="country">Country</label>
                 <input name="country" id="countryBox" type="text" value="United States" required>
 
+                <!-- The Phone Number field also has an extra layer of security by having the type of "tel" that
+                treats the user's inputted data more closly to a cell phone number. -->
+
                 <label for="phone">Phone</label>
-                <input name="phone" id="phoneBox" type="text" pattern=" ^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$ "
+                <input name="phone" id="phoneBox" type="tel" pattern=" ^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$ "
                     required>
+
+                <!-- The "stateList" targetted earlier starts here with an abrivation of every state given as an option
+                from a drop down menu to select for the user instead of them typing it out themselves. -->
 
                 <datalist id="stateList">
                     <option value="Al"></option>
@@ -142,31 +167,39 @@
 
             </fieldset>
 
+            <!-- Our form continues with an area the user will then add in their credit card information -->
+
             <fieldset id="creditCard">
                 <legend>Credit Card (required)</legend>
 
+                <!-- Option buttons are the method of verification used here via four bubbles which the user can
+                select one from the options described both by text and by a logo image. This is accomplished
+                by the "radio" type and having the image and text put into the area of the label. -->
+
                 <fieldset>
-                    <label for="cardLabel">AmEx</label>
+                    <label for="cardLabel">AmEx <img src="sb_amex.png" alt=""> </label>
                     <input name="cCard" type="radio" value="amex" required>
-                    <img src="sb_amex.png" alt="">
 
-                    <label for="cardLabel">Discover</label>
+                    <label for="cardLabel">Discover <img src="sb_discover.png" alt=""></label>
                     <input name="cCard" type="radio" value="discover" required>
-                    <img src="sb_discover.png" alt="">
 
-                    <label for="cardLabel">Master</label>
+                    <label for="cardLabel">Master <img src="sb_master.png" alt=""> </label>
                     <input name="cCard" type="radio" value="master" required>
-                    <img src="sb_master.png" alt="">
 
-                    <label for="cardLabel">Visa</label>
+                    <label for="cardLabel">Visa <img src="sb_visa.png" alt=""> </label>
                     <input name="cCard" type="radio" value="visa" required>
-                    <img src="sb_visa.png" alt="">
 
                 </fieldset>
+
+                <!-- The credit card number itself then is added with another pattern to ensure correct data is entered. -->
 
                 <label for="cardNumber">Credit Card Number</label>
                 <input name="cardNumber" id="cardBox" type="text" pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"
                     required>
+
+
+                <!-- Next is the Expiration Date entry that has another list also through a drop down cycling through
+                each of the months and starting from the top value as an empty string. -->
 
                 <label for="monthList">Expiration Date</label>
 
@@ -187,6 +220,8 @@
 
                 </select>
 
+                <!-- A similar selection is also down here with years being the option instead with similar function. -->
+
                 <select name="cardYear" id="yearList" required>
 
                     <option value="">--Year--</option>
@@ -199,10 +234,17 @@
 
                 </select>
 
+                <!-- The CSC entrance also has a max count of three characters to ensure the user won't add anymore
+                than what is nessasary. A placeholder is also added in to represent this. -->
+
                 <label for="cscBox">CSC</label>
-                <input name="cscBox" id="cscBox" type="text" pattern=" ^\d{3}$." max="3" placeholder="nnn">
+                <input name="cscBox" id="cscBox" type="text" pattern="^\d{3}$." max="3" placeholder="nnn">
 
             </fieldset>
+
+            <!-- Finally, a sumbit button is put on the end for the user to submit their data. It takes form of
+            the image provided with text on it displaying "next" and checking to make sure all required data
+            is verified correctly by the procedures before continuing on. -->
 
             <button type="submit">
                 <img src="sb_button.png" alt="next">
